@@ -1,6 +1,7 @@
-#include <stdio.h>
-#include <stdbool.h>
+//PROG71985- Group project (Task1)
+//Mateo Vega & Jose Ibanez - December 2021
 
+#include "main.h"
 
 int main(void)
 {
