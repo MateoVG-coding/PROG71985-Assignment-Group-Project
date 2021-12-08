@@ -6,23 +6,14 @@
 int main(void)
 {
 	bool continueProgram = true;
-	while (continueProgram) 
+	while (continueProgram)
 	{
-	
-		int menuInput;
-		printf("  **********************\n");
-		printf("***     Welcome to     ***\n");
-		printf("***  your task manager ***\n");
-		printf("  **********************\n\n");
 
-		printf("1) Add new task.\n");
-		printf("2) Delete a task.\n");
-		printf("3) Update a task.\n");
-		printf("4) Display a task.\n");
-		printf("5) Display a group of tasks.\n");
-		printf("6) Display all tasks.\n");
-		printf("7) Search a task.\n");
-		printf("0) Exit.\n\n");
+		int menuInput;
+
+		printWelcome();
+
+		printMenu();
 
 		printf("Please enter the number of the option that you want to choose: ");
 		scanf_s("%d", &menuInput);
@@ -71,4 +62,24 @@ int main(void)
 	}
 
 	return 0;
+}
+
+void printWelcome()
+{
+	printf("  **********************\n");
+	printf("***     Welcome to     ***\n");
+	printf("***  your task manager ***\n");
+	printf("  **********************\n\n");
+}
+
+void printMenu()
+{
+	printf("1) Add new task.\n");
+	printf("2) Delete a task.\n");
+	printf("3) Update a task.\n");
+	printf("4) Display a task.\n");
+	printf("5) Display a group of tasks.\n");
+	printf("6) Display all tasks.\n");
+	printf("7) Search a task.\n");
+	printf("0) Exit.\n\n");
 }

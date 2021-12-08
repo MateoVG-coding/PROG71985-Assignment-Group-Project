@@ -5,3 +5,7 @@
 
 #include <stdio.h>
 #include <stdbool.h>
+
+
+void printWelcome();
+void printMenu();
