@@ -29,6 +29,7 @@ void createArrayTasks(PTASK[]);
 
 void addNewTask(PTASK, int);
 void printTask(PTASK);
+void searchForTask(PTASK[], int);
 
 void setTaskNumber(PTASK, int);
 void setStatus(PTASK, int);
