@@ -119,3 +119,8 @@ char* getType(TASK t)
 {
 	return t.type;
 }
+
+void printTask(TASK task)
+{
+	printf("\nTitle: %s - Type: %s - Status: %s", getTitle(task), getType(task), getStatus(task));
+}
