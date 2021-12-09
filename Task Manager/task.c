@@ -13,25 +13,55 @@ void createArrayTasks(PTASK tasks[])
 
 void addNewTask(PTASK task)
 {
+	char junkChars[JUNKCHARS];
 	char title[LENGTHTITLE];
-	int status = 0;
-	int type = 0;
+	int status;
+	int type;
 
 	printf("Please enter the task you want to add:\n");
-	scanf_s("%s", title, LENGTHTITLE);
+
+	if (scanf_s("%s", title, LENGTHTITLE) != 1)
+	{
+		printf("You have entered an invalid value.\n");
+		scanf_s("%s", junkChars, JUNKCHARS);
+		return;
+	}
 
 	printf("Please enter the type of the task\n");
-	printf("1) Personal\t2) School\t3) Work\t4) Home\n");
-	scanf_s("%d", &type);
+	printf("1) Personal\t 2) School\t 3) Work\t 4) Home\n");
+
+	if (scanf_s("%d", &type) != 1)
+	{
+		printf("You have entered an invalid value.\n");
+		scanf_s("%s", junkChars, JUNKCHARS);
+		return;
+
+	} 
+	else if (type > 4 || type < 0)
+	{
+		printf("You have entered an invalid value.\n");
+		return;
+	}
 
 	printf("Please enter the status of the task:\n");
-	printf("1) To Dol\t2) Doing\t3) Done\n");
-	scanf_s("%d", &status);
+	printf("1) To Dol\t 2) Doing\t 3) Done\n");
+
+	if (scanf_s("%d", &status) != 1)
+	{
+		printf("You have entered an invalid value.\n");
+		scanf_s("%s", junkChars, JUNKCHARS);
+		return;
+
+	}
+	else if (status > 3 || status < 0)
+	{
+		printf("You have entered an invalid value.\n");
+		return;
+	}
 
 	setTitle(task, title);
 	setType(task, type);
 	setStatus(task, status);
-
 }
 
 void setStatus(PTASK t, int status)

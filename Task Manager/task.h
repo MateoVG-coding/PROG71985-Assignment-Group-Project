@@ -12,6 +12,7 @@
 #define LENGTHTITLE 40
 #define LENGTHTYPE 10
 #define NUMBEROFTASKS 200
+#define JUNKCHARS 256
 
 typedef struct task
 {
