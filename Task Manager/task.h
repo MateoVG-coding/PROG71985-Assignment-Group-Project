@@ -31,4 +31,3 @@ void setTitle(PTASK, char[]);
 char* getStatus(TASK);
 char* getTitle(TASK);
 char* getType(TASK);
-void printTask(PTASK);
