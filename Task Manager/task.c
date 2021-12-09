@@ -1,6 +1,7 @@
 //PROG71985- Group project (Task1)
 //Mateo Vega & Jose Ibanez - December 2021
 
+
 #include "task.h"
 
 void createArrayTasks(PTASK tasks[])
@@ -25,7 +26,7 @@ void addNewTask(PTASK task)
 	scanf_s("%d", &type);
 
 	printf("Please enter the status of the task:\n");
-	printf("1) To Dol\t2) Doing\t3) Done\n");
+	printf("1) To Do\t2) Doing\t3) Done\n");
 	scanf_s("%d", &status);
 
 	setTitle(task, title);
@@ -88,4 +89,9 @@ char* getTitle(TASK t)
 char* getType(TASK t)
 {
 	return t.type;
+}
+
+void printTask(TASK task)
+{
+	printf("\nTitle: %s - Type: %s - Status: %s", getTitle(task), getType(task), getStatus(task));
 }

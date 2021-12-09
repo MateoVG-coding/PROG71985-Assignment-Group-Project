@@ -49,6 +49,13 @@ int main(void)
 			}
 			case 6:
 			{
+				int i = 0;
+				while (i < numberTasks)
+				{
+					printTask(arrayTasks[i]);
+					i++;
+				}
+				printf("\n");
 				break;
 			}
 			case 7:
