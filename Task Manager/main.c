@@ -5,6 +5,8 @@
 
 int main(void)
 {
+	char junkChars[JUNKCHARS];
+
 	int numberTasks = 0;
 
 	PTASK arrayTasks[NUMBEROFTASKS];
@@ -20,8 +22,14 @@ int main(void)
 
 		printMenu();
 
-		printf("Please enter the number of the option that you want to choose:\n ");
-		scanf_s("%d", &menuInput);
+		printf("Please enter the number of the option that you want to choose:\n");
+
+		if (scanf_s("%d", &menuInput) != 1)
+		{
+			printf("You have entered an invalid value.\n");
+			scanf_s("%s", junkChars, JUNKCHARS);
+			exit(1);
+		}
 
 		switch (menuInput)
 		{
@@ -33,6 +41,7 @@ int main(void)
 			}
 			case 2:
 			{
+
 				break;
 			}
 			case 3:
