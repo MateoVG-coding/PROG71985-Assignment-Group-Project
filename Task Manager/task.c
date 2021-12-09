@@ -8,10 +8,11 @@ void createArrayTasks(PTASK tasks[])
 	for (int i = 0; i < NUMBEROFTASKS; i++)
 	{
 		tasks[i] = (PTASK)malloc(sizeof(TASK));
+		setTaskNumber(tasks[i], i + 1);
 	}
 }
 
-void addNewTask(PTASK task)
+void addNewTask(PTASK task, int numberOfTask)
 {
 	char junkChars[JUNKCHARS];
 	char title[LENGTHTITLE];
@@ -64,6 +65,17 @@ void addNewTask(PTASK task)
 	setStatus(task, status);
 }
 
+void printTask(TASK task)
+{
+	printf("%d.\nTask: %s\nType: %s\nStatus: %s\n", getTaskNumber(task) ,getTitle(task), getType(task), getStatus(task));
+}
+
+
+void setTaskNumber(PTASK t, int taskNumber)
+{
+	t->taskNumber = taskNumber;
+}
+
 void setStatus(PTASK t, int status)
 {
 	if (status == 1)
@@ -105,6 +117,11 @@ void setType(PTASK t, int type)
 	}
 }
 
+int getTaskNumber(TASK t)
+{
+	return t.taskNumber;
+}
+
 char* getStatus(TASK t)
 {
 	return t.status;
@@ -118,9 +135,4 @@ char* getTitle(TASK t)
 char* getType(TASK t)
 {
 	return t.type;
-}
-
-void printTask(TASK task)
-{
-	printf("\nTitle: %s - Type: %s - Status: %s", getTitle(task), getType(task), getStatus(task));
 }

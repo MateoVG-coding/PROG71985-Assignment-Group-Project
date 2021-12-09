@@ -35,7 +35,7 @@ int main(void)
 		{
 			case 1:
 			{
-				addNewTask(arrayTasks[numberTasks]);
+				addNewTask(arrayTasks[numberTasks], numberTasks);
 				numberTasks += 1;
 				break;
 			}

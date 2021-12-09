@@ -11,11 +11,12 @@
 #define LENGTHSTATUS 10
 #define LENGTHTITLE 40
 #define LENGTHTYPE 10
-#define NUMBEROFTASKS 200
+#define NUMBEROFTASKS 100
 #define JUNKCHARS 256
 
 typedef struct task
 {
+	int taskNumber;
 	char status[LENGTHSTATUS];
 	char title[LENGTHTITLE];
 	char type[LENGTHTYPE];
@@ -24,12 +25,14 @@ typedef struct task
 
 void createArrayTasks(PTASK[]);
 
-void addNewTask(PTASK);
+void addNewTask(PTASK, int);
+void printTask(PTASK);
 
+void setTaskNumber(PTASK, int);
 void setStatus(PTASK, int);
 void setType(PTASK, int);
 void setTitle(PTASK, char[]);
+int getTaskNumber(TASK);
 char* getStatus(TASK);
 char* getTitle(TASK);
 char* getType(TASK);
-void printTask(PTASK);
