@@ -26,7 +26,7 @@ typedef struct task
 void createArrayTasks(PTASK[]);
 
 void addNewTask(PTASK, int);
-void printTask(PTASK);
+void printTask(TASK);
 
 void setTaskNumber(PTASK, int);
 void setStatus(PTASK, int);
