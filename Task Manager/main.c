@@ -82,7 +82,7 @@ int main(void)
 
 void printWelcome()
 {
-	printf("  **********************\n");
+	printf("\n **********************\n");
 	printf("***     Welcome to     ***\n");
 	printf("***  your task manager ***\n");
 	printf("  **********************\n\n");
