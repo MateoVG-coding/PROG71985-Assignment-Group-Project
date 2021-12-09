@@ -14,10 +14,10 @@ void createArrayTasks(PTASK tasks[])
 
 void addNewTask(PTASK task, int numberOfTask)
 {
-	char junkChars[JUNKCHARS];
-	char title[LENGTHTITLE];
-	int status;
-	int type;
+	char junkChars[JUNKCHARS] = { '\0' };
+	char title[LENGTHTITLE] = { '\0' };
+	int status = 0;
+	int type = 0;
 
 	printf("Please enter the task you want to add:\n");
 
@@ -65,7 +65,7 @@ void addNewTask(PTASK task, int numberOfTask)
 	setStatus(task, status);
 }
 
-void printTask(TASK task)
+void printTask(PTASK task)
 {
 	printf("%d.\nTask: %s\nType: %s\nStatus: %s\n", getTaskNumber(task) ,getTitle(task), getType(task), getStatus(task));
 }
@@ -117,22 +117,22 @@ void setType(PTASK t, int type)
 	}
 }
 
-int getTaskNumber(TASK t)
+int getTaskNumber(PTASK t)
 {
-	return t.taskNumber;
+	return t->taskNumber;
 }
 
-char* getStatus(TASK t)
+char* getStatus(PTASK t)
 {
-	return t.status;
+	return t->status;
 }
 
-char* getTitle(TASK t)
+char* getTitle(PTASK t)
 {
-	return t.title;
+	return t->title;
 }
 
-char* getType(TASK t)
+char* getType(PTASK t)
 {
-	return t.type;
+	return t->type;
 }

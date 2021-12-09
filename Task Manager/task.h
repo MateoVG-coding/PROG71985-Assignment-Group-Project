@@ -3,14 +3,16 @@
 
 #pragma once
 
+#define _CRT_SECURE_NO_WARNINGS
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
 #include <string.h>
 
-#define LENGTHSTATUS 10
-#define LENGTHTITLE 40
-#define LENGTHTYPE 10
+#define LENGTHSTATUS 50
+#define LENGTHTITLE 100
+#define LENGTHTYPE 50
 #define NUMBEROFTASKS 100
 #define JUNKCHARS 256
 
@@ -26,13 +28,13 @@ typedef struct task
 void createArrayTasks(PTASK[]);
 
 void addNewTask(PTASK, int);
-void printTask(TASK);
+void printTask(PTASK);
 
 void setTaskNumber(PTASK, int);
 void setStatus(PTASK, int);
 void setType(PTASK, int);
 void setTitle(PTASK, char[]);
-int getTaskNumber(TASK);
-char* getStatus(TASK);
-char* getTitle(TASK);
-char* getType(TASK);
+int getTaskNumber(PTASK);
+char* getStatus(PTASK);
+char* getTitle(PTASK);
+char* getType(PTASK);
