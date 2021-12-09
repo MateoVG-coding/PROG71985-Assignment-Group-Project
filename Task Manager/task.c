@@ -45,7 +45,7 @@ void addNewTask(PTASK task, int numberOfTask)
 	}
 
 	printf("Please enter the status of the task:\n");
-	printf("1) To Dol\t 2) Doing\t 3) Done\n");
+	printf("1) To Do\t 2) Doing\t 3) Done\n");
 
 	if (scanf_s("%d", &status) != 1)
 	{
@@ -67,7 +67,7 @@ void addNewTask(PTASK task, int numberOfTask)
 
 void printTask(PTASK task)
 {
-	printf("%d.\nTask: %s\nType: %s\nStatus: %s\n", getTaskNumber(task) ,getTitle(task), getType(task), getStatus(task));
+	printf("\n%d.\nTask: %s\nType: %s\nStatus: %s\n", getTaskNumber(task) ,getTitle(task), getType(task), getStatus(task));
 }
 
 
