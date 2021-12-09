@@ -5,23 +5,30 @@
 
 int main(void)
 {
+	int numberTasks = 0;
+
+	PTASK arrayTasks[NUMBEROFTASKS];
+
+	createArrayTasks(arrayTasks);
+
 	bool continueProgram = true;
 	while (continueProgram)
 	{
-
 		int menuInput;
 
 		printWelcome();
 
 		printMenu();
 
-		printf("Please enter the number of the option that you want to choose: ");
+		printf("Please enter the number of the option that you want to choose:\n ");
 		scanf_s("%d", &menuInput);
 
 		switch (menuInput)
 		{
 			case 1:
 			{
+				addNewTask(arrayTasks[numberTasks]);
+				numberTasks += 1;
 				break;
 			}
 			case 2:

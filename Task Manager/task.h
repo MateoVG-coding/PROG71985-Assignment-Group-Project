@@ -8,22 +8,26 @@
 #include <stdbool.h>
 #include <string.h>
 
-#define LENGTHSIZE 10
-#define LENGTHDESCRIPTION 40
-#define NUMBEROFTASKS 30
+#define LENGTHSTATUS 10
+#define LENGTHTITLE 40
+#define LENGTHTYPE 10
+#define NUMBEROFTASKS 200
 
 typedef struct task
 {
-	int taskNumber;
-	char status[LENGTHSIZE];
-	char description[LENGTHDESCRIPTION];
+	char status[LENGTHSTATUS];
+	char title[LENGTHTITLE];
+	char type[LENGTHTYPE];
 
 }TASK, * PTASK;
 
 void createArrayTasks(PTASK[]);
 
-void setTaskNumber(PTASK, int);
+void addNewTask(PTASK);
 
-void setStatus(PTASK, char[]);
-
-void setDescription(PTASK, char[]);
+void setStatus(PTASK, int);
+void setType(PTASK, int);
+void setTitle(PTASK, char[]);
+char* getStatus(TASK);
+char* getTitle(TASK);
+char* getType(TASK);

@@ -11,32 +11,81 @@ void createArrayTasks(PTASK tasks[])
 	}
 }
 
-void setTaskNumber(PTASK t, int taskNumber)
+void addNewTask(PTASK task)
 {
-	t->taskNumber = taskNumber;
+	char title[LENGTHTITLE];
+	int status = 0;
+	int type = 0;
+
+	printf("Please enter the task you want to add:\n");
+	scanf_s("%s", title, LENGTHTITLE);
+
+	printf("Please enter the type of the task\n");
+	printf("1) Personal\t2) School\t3) Work\t4) Home\n");
+	scanf_s("%d", &type);
+
+	printf("Please enter the status of the task:\n");
+	printf("1) To Dol\t2) Doing\t3) Done\n");
+	scanf_s("%d", &status);
+
+	setTitle(task, title);
+	setType(task, type);
+	setStatus(task, status);
+
 }
 
-void setStatus(PTASK t, char status[])
+void setStatus(PTASK t, int status)
 {
-	strncpy_s(t->status, LENGTHSIZE, status, LENGTHSIZE);
+	if (status == 1)
+	{
+		strncpy_s(t->status, LENGTHSTATUS, "To Do", LENGTHSTATUS);
+	}
+	else if (status == 2)
+	{
+		strncpy_s(t->status, LENGTHSTATUS, "Doing", LENGTHSTATUS);
+	}
+	else
+	{
+		strncpy_s(t->status, LENGTHSTATUS, "Done", LENGTHSTATUS);
+	}
 }
 
-void setDescription(PTASK t, char description[])
+void setTitle(PTASK t, char title[])
 {
-	strncpy_s(t->description, LENGTHDESCRIPTION, description, LENGTHDESCRIPTION);
+	strncpy_s(t->title, LENGTHTITLE, title, LENGTHTITLE);
 }
 
-int getTaskNumber(TASK t)
+void setType(PTASK t, int type)
 {
-	return (t.taskNumber);
+	if (type == 1)
+	{
+		strncpy_s(t->type, LENGTHTYPE, "Personal" , LENGTHTYPE);
+	}
+	else if (type == 2)
+	{
+		strncpy_s(t->type, LENGTHTYPE, "School", LENGTHTYPE);
+	}
+	else if (type == 3)
+	{
+		strncpy_s(t->type, LENGTHTYPE, "Work", LENGTHTYPE);
+	}
+	else
+	{
+		strncpy_s(t->type, LENGTHTYPE, "Home", LENGTHTYPE);
+	}
 }
 
 char* getStatus(TASK t)
 {
-	return (t.status);
+	return t.status;
 }
 
-char* getDescription(TASK t)
+char* getTitle(TASK t)
 {
-	return (t.description);
+	return t.title;
+}
+
+char* getType(TASK t)
+{
+	return t.type;
 }
