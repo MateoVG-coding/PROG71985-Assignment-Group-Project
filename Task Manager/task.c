@@ -122,9 +122,8 @@ void deleteTask(PTASK arrayTask[], int* numberOfTasks)
 		return;
 	}
 
-	if (NtaskToDelete > *numberOfTasks)
+	if (taskExists(*numberOfTasks, NtaskToDelete) == false)
 	{
-		printf("The task does not exist.\n");
 		return;
 	}
 
@@ -168,9 +167,8 @@ void updateTask(PTASK arrayTask[], int numberOfTasks)
 		return;
 	}
 
-	if (taskToUpdate > numberOfTasks)
+	if (taskExists(numberOfTasks, taskToUpdate) == false)
 	{
-		printf("The task does not exist.\n");
 		return;
 	}
 
@@ -237,14 +235,14 @@ void printSingleTask(PTASK arrayTasks[], int numberOfTasks)
 		return;
 	}
 
-	if (task > numberOfTasks)
+	if (taskExists(numberOfTasks, task) == false)
 	{
-		printf("The task does not exist.\n");
 		return;
 	}
 
-	printf("\n%d.\nTask: %s\nType: %s\nStatus: %s\n", getTaskNumber(arrayTasks[task]), getTitle(arrayTasks[task]), getType(arrayTasks[task]), getStatus(arrayTasks[task]));
+	printf("\n%d.\nTask: %s\nType: %s\nStatus: %s\n", getTaskNumber(arrayTasks[task - 1]), getTitle(arrayTasks[task - 1]), getType(arrayTasks[task - 1]), getStatus(arrayTasks[task - 1]));
 }
+
 
 
 void searchForTask(PTASK task[], int* numberTasks)
@@ -372,6 +370,17 @@ bool RemoveBadChars(char* input)
 	{
 		if (input[i] == '\n')
 			input[i] = '\0';
+	}
+
+	return true;
+}
+
+bool taskExists(int numberOfTasks, int taskNumber)
+{
+	if (taskNumber > numberOfTasks)
+	{
+		printf("This task does not exist.\n\n");
+		return false;
 	}
 
 	return true;
