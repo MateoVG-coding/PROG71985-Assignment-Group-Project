@@ -319,7 +319,7 @@ void printSingleTask(PTASK arrayTasks[], int numberOfTasks)
 
 	int task = 0;
 
-	printf("Please enter the number of the task you want to see:\n");
+	printf("Please enter the number of the task you want to see: ");
 
 	if (scanf_s("%d", &task) != 1)
 	{
@@ -363,30 +363,37 @@ void printRangeTask(PTASK arrayTasks[], int numberOfTasks)
 		case 1:
 		{
 			printToDoTasks(arrayTasks, numberOfTasks);
+			break;
 		}
 		case 2:
 		{
-			printToDoTasks(arrayTasks, numberOfTasks);
+			printDoingTasks(arrayTasks, numberOfTasks);
+			break;
 		}
 		case 3:
 		{
-			printToDoTasks(arrayTasks, numberOfTasks);
+			printDoneTasks(arrayTasks, numberOfTasks);
+			break;
 		}
 		case 4:
 		{
-			printToDoTasks(arrayTasks, numberOfTasks);
+			printPersonalTasks(arrayTasks, numberOfTasks);
+			break;
 		}
 		case 5:
 		{
-			printToDoTasks(arrayTasks, numberOfTasks);
+			printSchoolTasks(arrayTasks, numberOfTasks);
+			break;
 		}
 		case 6:
 		{
-			printToDoTasks(arrayTasks, numberOfTasks);
+			printWorkTasks(arrayTasks, numberOfTasks);
+			break;
 		}
 		case 7:
 		{
-			printToDoTasks(arrayTasks, numberOfTasks);
+			printHomeTasks(arrayTasks, numberOfTasks);
+			break;
 		}
 		default:
 		{
