@@ -83,24 +83,16 @@ void addNewTask(PTASK task, int* numberOfTasks)
 	}
 
 
-	if (status == 1)
-	{
-		setStatus(task, "To Do");
-	}
-	else if (status == 2)
-	{
-		setStatus(task, "Doing");
-	}
-	else if (status == 3)
-	{
-		setStatus(task, "Done");
-	}
+void printTask(PTASK task)
+{
+	printf("\n%d.\nTask: %s\nType: %s\nStatus: %s\n", getTaskNumber(task) ,getTitle(task), getType(task), getStatus(task));
+}
 
 	*numberOfTasks += 1;
 
-	printf("The task has been successfully created.\n");
-
-	return;
+void setTaskNumber(PTASK t, int taskNumber)
+{
+	t->taskNumber = taskNumber;
 }
 
 void deleteTask(PTASK arrayTask[], int* numberOfTasks)
