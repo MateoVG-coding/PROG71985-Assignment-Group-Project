@@ -467,6 +467,13 @@ void searchForTask(PTASK task[], int* numberTasks)
 	int input = 0;
 	int taskNumber = 0;
 	char junkChars[JUNKCHARS];
+
+	if (*numberTasks == 0)
+	{
+		printf("There is no task to search.\n\n");
+		return;
+	}
+
 	printf("Please enter the number of the task: ");
 	if (scanf_s("%d", &taskNumber) != 1)
 	{
@@ -559,6 +566,24 @@ void searchForTask(PTASK task[], int* numberTasks)
 		printf("Invalid number.\n\n");
 		break;
 	}
+	}
+}
+
+void printAllTasks(PTASK tasks[], int numberTasks)
+{
+	int i = 0;
+	if (numberTasks == 0)
+	{
+		printf("There no tasks to print.\n\n");
+	}
+	else
+	{
+		while (i < numberTasks)
+		{
+			printTask(tasks[i]);
+			i++;
+		}
+		printf("\n");
 	}
 }
 
