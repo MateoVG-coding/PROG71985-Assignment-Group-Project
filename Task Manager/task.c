@@ -40,7 +40,7 @@ void addNewTask(PTASK task, int* numberOfTasks)
 		scanf_s("%s", junkChars, JUNKCHARS);
 		return;
 
-	} 
+	}
 	else if (type > 4 || type < 0)
 	{
 		printf("You have entered an invalid value.\n");
@@ -83,16 +83,22 @@ void addNewTask(PTASK task, int* numberOfTasks)
 	}
 
 
-void printTask(PTASK task)
-{
-	printf("\n%d.\nTask: %s\nType: %s\nStatus: %s\n", getTaskNumber(task) ,getTitle(task), getType(task), getStatus(task));
-}
+	if (status == 1)
+	{
+		setStatus(task, "To Do");
+	}
+	else if (status == 2)
+	{
+		setStatus(task, "Doing");
+	}
+	else if (status == 3)
+	{
+		setStatus(task, "Done");
+	}
 
 	*numberOfTasks += 1;
 
-void setTaskNumber(PTASK t, int taskNumber)
-{
-	t->taskNumber = taskNumber;
+	printf("The task has been successfully created.\n");
 }
 
 void deleteTask(PTASK arrayTask[], int* numberOfTasks)
