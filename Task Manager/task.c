@@ -109,10 +109,18 @@ void deleteTask(PTASK arrayTask[], int* numberOfTasks)
 		return;
 	}
 
+	char junkChars[JUNKCHARS] = { '\0' };
+
 	int NtaskToDelete;
 
 	printf("Please enter the number of the task you want to delete:\n");
-	scanf_s("%d", &NtaskToDelete);
+
+	if (scanf_s("%d", &NtaskToDelete) != 1)
+	{
+		printf("You have entered an invalid value.\n");
+		scanf_s("%s", junkChars, JUNKCHARS);
+		return;
+	}
 
 	if (NtaskToDelete > *numberOfTasks)
 	{
@@ -143,9 +151,11 @@ void updateTask(PTASK arrayTask[], int numberOfTasks)
 {
 	if (numberOfTasks == 0)
 	{
-		printf("There is no task to delete.\n");
+		printf("There is no task to update.\n");
 		return;
 	}
+
+	char junkChars[JUNKCHARS] = { '\0' };
 
 	int taskToUpdate = 0;
 
@@ -154,6 +164,7 @@ void updateTask(PTASK arrayTask[], int numberOfTasks)
 	if (scanf_s("%d", &taskToUpdate) != 1)
 	{
 		printf("You have entered an invalid value.\n");
+		scanf_s("%s", junkChars, JUNKCHARS);
 		return;
 	}
 
@@ -173,6 +184,7 @@ void updateTask(PTASK arrayTask[], int numberOfTasks)
 	if (scanf_s("%d", &status) != 1)
 	{
 		printf("You have entered an invalid value.\n");
+		scanf_s("%s", junkChars, JUNKCHARS);
 		return;
 
 	}
@@ -202,6 +214,36 @@ void updateTask(PTASK arrayTask[], int numberOfTasks)
 void printTask(PTASK task)
 {
 	printf("\n%d.\nTask: %s\nType: %s\nStatus: %s\n", getTaskNumber(task) ,getTitle(task), getType(task), getStatus(task));
+}
+
+void printSingleTask(PTASK arrayTasks[], int numberOfTasks)
+{
+	if (numberOfTasks == 0)
+	{
+		printf("There is no task to delete.\n");
+		return;
+	}
+
+	char junkChars[JUNKCHARS] = { '\0' };
+
+	int task = 0;
+
+	printf("Please enter the number of the task you want to see:\n");
+
+	if (scanf_s("%d", &task) != 1)
+	{
+		printf("You have entered an invalid value.\n");
+		scanf_s("%s", junkChars, JUNKCHARS);
+		return;
+	}
+
+	if (task > numberOfTasks)
+	{
+		printf("The task does not exist.\n");
+		return;
+	}
+
+	printf("\n%d.\nTask: %s\nType: %s\nStatus: %s\n", getTaskNumber(arrayTasks[task]), getTitle(arrayTasks[task]), getType(arrayTasks[task]), getStatus(arrayTasks[task]));
 }
 
 

@@ -32,6 +32,7 @@ void addNewTask(PTASK, int*);
 void deleteTask(PTASK[], int*);
 void updateTask(PTASK[], int);
 void printTask(PTASK);
+void printSingleTask(PTASK[], int);
 void searchForTask(PTASK[], int*);
 bool saveTasks(PTASK[], int);
 bool loadTasks(PTASK[], int*);

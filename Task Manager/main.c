@@ -55,6 +55,7 @@ int main(void)
 			}
 			case 4:
 			{
+				printSingleTask(arrayTasks, numberTasks);
 				break;
 			}
 			case 5:
