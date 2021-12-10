@@ -44,28 +44,34 @@ void addNewTask(PTASK task, int* numberOfTasks)
 	printf("\n");
 
 
-	if (type == 1)                                     //Checking the number entered by the user to set the type of task according to the option chosen.
+	switch (type)        //Checking the number entered by the user to set the type of task according to the option chosen.
 	{
-		setType(task, "Personal");
+		case 1:
+		{
+			setType(task, "Personal");
+			break;
+		}
+		case 2:
+		{
+			setType(task, "School");
+			break;
+		}
+		case 3:
+		{
+			setType(task, "Work");
+			break;
+		}
+		case 4:
+		{
+			setType(task, "Home");
+			break;
+		}
+		default:
+		{
+			printf("\nInvalid value entered.\n\n");
+			return;
+		}
 	}
-	else if (type == 2)
-	{
-		setType(task, "School");
-	}
-	else if (type == 3)
-	{
-		setType(task, "Work");
-	}
-	else if (type == 4)
-	{
-		setType(task, "Home");
-	}
-	else
-	{
-		printf("You have entered an invalid value.\n\n");
-		return;
-	}
-
 
 	printf("Please enter the status of the task:\n");
 	printf("1) To Do\t 2) Doing\t 3) Done\n");
@@ -79,22 +85,25 @@ void addNewTask(PTASK task, int* numberOfTasks)
 	}
 	printf("\n");
 
-	if (status == 1)                                   //Checking the number entered by the user to set the status of the task according to the option chosen.
+	switch (status)
 	{
-		setStatus(task, "To Do");
-	}
-	else if (status == 2)
-	{
-		setStatus(task, "Doing");
-	}
-	else if (status == 3)
-	{
-		setStatus(task, "Done");
-	}
-	else
-	{
-		printf("You have entered an invalid value.\n");
-		return;
+		case 1:
+		{
+			setStatus(task, "To Do");
+		}
+		case 2:
+		{
+			setStatus(task, "Doing");
+		}
+		case 3:
+		{
+			setStatus(task, "Done");
+		}
+		default:
+		{
+			printf("\nInvalid value entered.\n\n");
+			return;
+		}
 	}
 
 	*numberOfTasks += 1;                               //Incrementing the number of tasks to let the program know that a new task has been created.
@@ -199,8 +208,8 @@ void updateTask(PTASK arrayTask[], int numberOfTasks)
 	}
 	default:
 	{
-		printf("Invalid value entered.\n\n");
-		break;
+		printf("You have entered an invalid value.\n\n");
+		return;
 	}
 	}
 }
@@ -222,22 +231,25 @@ void updateStatus(PTASK tasks[], int taskToUpdate)
 	}
 	printf("\n");
 
-	if (status == 1)                                                    //Checking the option that the user chose to change the status depending on that.
+	switch (status)
 	{
-		setStatus(tasks[taskToUpdate - 1], "To Do");
-	}
-	else if (status == 2)
-	{
-		setStatus(tasks[taskToUpdate - 1], "Doing");
-	}
-	else if (status == 3)
-	{
-		setStatus(tasks[taskToUpdate - 1], "Done");
-	}
-	else
-	{
-		printf("You have entered an invalid value.\n");
-		return;
+		case 1:
+		{
+			setStatus(tasks[taskToUpdate - 1], "To Do");
+		}
+		case 2:
+		{
+			setStatus(tasks[taskToUpdate - 1], "Doing");
+		}
+		case 3:
+		{
+			setStatus(tasks[taskToUpdate - 1], "Done");
+		}
+		default:
+		{
+			printf("\nYou have entered an invalid value.\n\n");
+			return;
+		}
 	}
 
 	printf("The task has been successfully updated.\n\n");
@@ -283,8 +295,8 @@ void updateType(PTASK tasks[], int taskToUpdate)
 		}
 	default:
 	{
-		printf("Invalid value entered.\n\n");
-		break;
+		printf("You have entered an invalid value.\n\n");
+		return;
 	}
 	}
 	printf("The task has been succesfully updated.\n\n");
@@ -346,40 +358,42 @@ void printRangeTask(PTASK arrayTasks[], int numberOfTasks)
 		return;
 	}
 
-	if (option == 1)                                      //Checking which option did the user choose to print a group of tasks based on that.
+	switch (option)         //Checking which option did the user choose to print a group of tasks based on that.
 	{
-		printToDoTasks(arrayTasks, numberOfTasks);
+		case 1:
+		{
+			printToDoTasks(arrayTasks, numberOfTasks);
+		}
+		case 2:
+		{
+			printToDoTasks(arrayTasks, numberOfTasks);
+		}
+		case 3:
+		{
+			printToDoTasks(arrayTasks, numberOfTasks);
+		}
+		case 4:
+		{
+			printToDoTasks(arrayTasks, numberOfTasks);
+		}
+		case 5:
+		{
+			printToDoTasks(arrayTasks, numberOfTasks);
+		}
+		case 6:
+		{
+			printToDoTasks(arrayTasks, numberOfTasks);
+		}
+		case 7:
+		{
+			printToDoTasks(arrayTasks, numberOfTasks);
+		}
+		default:
+		{
+			printf("You have entered an invalid value.\n\n");
+			return;
+		}
 	}
-	else if (option == 2)
-	{
-		printDoingTasks(arrayTasks, numberOfTasks);
-	}
-	else if (option == 3)
-	{
-		printDoneTasks(arrayTasks, numberOfTasks);
-	}
-	else if (option == 4)
-	{
-		printPersonalTasks(arrayTasks, numberOfTasks);
-	}
-	else if (option == 5)
-	{
-		printSchoolTasks(arrayTasks, numberOfTasks);
-	}
-	else if (option == 6)
-	{
-		printWorkTasks(arrayTasks, numberOfTasks);
-	}
-	else if (option == 7)
-	{
-		printHomeTasks(arrayTasks, numberOfTasks);
-	}
-	else
-	{
-		printf("You have entered an invalid value.\n");
-		return;
-	}
-
 }
 
 void printToDoTasks(PTASK arrayTasks[], int numberOfTasks)
@@ -536,7 +550,7 @@ void searchForTask(PTASK task[], int* numberTasks)
 		return;
 	}
 
-	if (taskExists(numberTasks, taskNumber) == false)			  //Checking if the task that the user wants to search exists or not.
+	if (taskExists(*numberTasks, taskNumber) == false)			  //Checking if the task that the user wants to search exists or not.
 	{
 		return;
 	}
