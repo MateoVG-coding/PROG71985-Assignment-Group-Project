@@ -41,7 +41,7 @@ void printPersonalTasks(PTASK[], int);
 void printSchoolTasks(PTASK[], int);
 void printWorkTasks(PTASK[], int);
 void printHomeTasks(PTASK[], int);
-void printAllTasks(PTASK, int);
+void printAllTasks(PTASK[], int);
 void searchForTask(PTASK[], int*);
 bool saveTasks(PTASK[], int);
 bool loadTasks(PTASK[], int*);
