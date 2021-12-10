@@ -313,29 +313,15 @@ bool loadTasks(PTASK tasks[], int* numberTasks)
 		fgets(typeBuffer, MAX_BUFFER, fp);
 		fgets(statusBuffer, MAX_BUFFER, fp);
 
+		RemoveBadChars(titleBuffer);
+		RemoveBadChars(typeBuffer);
+		RemoveBadChars(statusBuffer);
+
 		setTaskNumber(tasks[i], taskNumber);
 		setTitle(tasks[i], titleBuffer);
 		setType(tasks[i], typeBuffer);
 		setStatus(tasks[i], statusBuffer);
 	}
-}
-
-
-PTASK CreateTask(int taskNumber, char title[], char type[], char status[], int i)
-{
-	PTASK tasks[NUMBEROFTASKS];
-	createArrayTasks(tasks);
-
-	tasks[i]->taskNumber = taskNumber;
-	strncpy_s(tasks[i]->title, LENGTHTITLE, title, LENGTHTITLE);
-	strncpy_s(tasks[i]->type, LENGTHTYPE, type, LENGTHTYPE);
-	strncpy_s(tasks[i]->status, LENGTHSTATUS, status, LENGTHSTATUS);
-
-	RemoveBadChars(title);
-	RemoveBadChars(type);
-	RemoveBadChars(status);
-
-	return tasks;
 }
 
 bool RemoveBadChars(char* input)
