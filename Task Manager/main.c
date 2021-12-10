@@ -12,9 +12,9 @@ int main(void)
 
 	PTASK arrayTasks[NUMBEROFTASKS];
 
-	createArrayTasks(arrayTasks);
+	createArrayTasks(arrayTasks);                        //Initializing the array.
 
-	loadTasks(arrayTasks, &numberTasks);
+	loadTasks(arrayTasks, &numberTasks);                 //Loading data from the file if any.
 
 	bool continueProgram = true;
 	while (continueProgram)
@@ -27,7 +27,7 @@ int main(void)
 
 		printf("Please enter the number of the option that you want to choose: ");
 
-		if (scanf_s("%d", &menuInput) != 1)
+		if (scanf_s("%d", &menuInput) != 1)             //Input Vaidation that avoids the entering of invalid values as well as errors in the loop.
 		{
 			printf("You have entered an invalid value.\n");
 			scanf_s("%s", junkChars, JUNKCHARS);
@@ -85,7 +85,7 @@ int main(void)
 				break;
 			}
 		}
-		saveTasks(arrayTasks, numberTasks);
+		saveTasks(arrayTasks, numberTasks);             //Saving changes made in the current run if any.                       
 	}
 
 	return 0;

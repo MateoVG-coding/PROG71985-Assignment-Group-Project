@@ -5,10 +5,10 @@
 
 void createArrayTasks(PTASK tasks[])
 {
-	for (int i = 0; i < NUMBEROFTASKS; i++)
+	for (int i = 0; i < NUMBEROFTASKS; i++)               //Loop to initialize each position of the array.
 	{
 		tasks[i] = (PTASK)malloc(sizeof(TASK));
-		setTaskNumber(tasks[i], i + 1);
+		setTaskNumber(tasks[i], i + 1);                   //Giving each task an specific task number.
 	}
 }
 
@@ -21,7 +21,7 @@ void addNewTask(PTASK task, int* numberOfTasks)
 
 	printf("Please enter the task you want to add: ");
 
-	if (scanf_s("%s", title, LENGTHTITLE) != 1)
+	if (scanf_s("%s", title, LENGTHTITLE) != 1)           //Input validation that checks if the input entered is valid or not and avoids errors in the funciton.
 	{
 		printf("You have entered an invalid value.\n");
 		scanf_s("%s", junkChars, JUNKCHARS);
@@ -29,7 +29,7 @@ void addNewTask(PTASK task, int* numberOfTasks)
 	}
 	printf("\n");
 
-	setTitle(task, title);
+	setTitle(task, title);                               //Setting the string entered as the title for the current task.
 
 
 	printf("Please enter the type of the task\n");
@@ -44,7 +44,7 @@ void addNewTask(PTASK task, int* numberOfTasks)
 	printf("\n");
 
 
-	if (type == 1)
+	if (type == 1)                                     //Checking the number entered by the user to set the type of task according to the option chosen.
 	{
 		setType(task, "Personal");
 	}
@@ -79,7 +79,7 @@ void addNewTask(PTASK task, int* numberOfTasks)
 	}
 	printf("\n");
 
-	if (status == 1)
+	if (status == 1)                                   //Checking the number entered by the user to set the status of the task according to the option chosen.
 	{
 		setStatus(task, "To Do");
 	}
@@ -97,14 +97,14 @@ void addNewTask(PTASK task, int* numberOfTasks)
 		return;
 	}
 
-	*numberOfTasks += 1;
+	*numberOfTasks += 1;                               //Incrementing the number of tasks to let the program know that a new task has been created.
 
 	printf("The task has been successfully created.\n\n");
 }
 
 void deleteTask(PTASK arrayTask[], int* numberOfTasks)
 {
-	if (*numberOfTasks == 0)
+	if (*numberOfTasks == 0)											//Checking if there is any task to delete.
 	{
 		printf("There is no task to delete.\n");
 		return;
@@ -124,23 +124,25 @@ void deleteTask(PTASK arrayTask[], int* numberOfTasks)
 	}
 	printf("\n");
 
-	if (taskExists(*numberOfTasks, NtaskToDelete) == false)
+	if (taskExists(*numberOfTasks, NtaskToDelete) == false)             //Checking if the task that the user wants to delete exists.     
 	{
 		return;
 	}
 
-	for (int i = NtaskToDelete; i < *numberOfTasks; ++i)
+	for (int i = NtaskToDelete; i < *numberOfTasks; ++i)                //Loop used to move one position down every task that is after the task deleted.
 	{
-		setStatus(arrayTask[i - 1], getStatus(arrayTask[i]));
-		setTitle(arrayTask[i - 1], getTitle(arrayTask[i]));
-		setType(arrayTask[i - 1], getType(arrayTask[i]));
+		//Changing the position of the tasks by moving their status, title and type one position down in the array.
+		setStatus(arrayTask[i - 1], getStatus(arrayTask[i]));           
+		setTitle(arrayTask[i - 1], getTitle(arrayTask[i]));             
+		setType(arrayTask[i - 1], getType(arrayTask[i]));              
 
+		//Cleaning the original position of the task since it has been moved one place down.
 		setStatus(arrayTask[i], "");
 		setTitle(arrayTask[i], "");
 		setType(arrayTask[i], "");
 	}
 
-	*numberOfTasks -= 1;
+	*numberOfTasks -= 1;                                                //Subtracting one from the number of tasks to let the program know that a task has been deleted.
 
 	printf("The task has been successfully deleted.\n");
 
@@ -150,7 +152,7 @@ void deleteTask(PTASK arrayTask[], int* numberOfTasks)
 
 void updateTask(PTASK arrayTask[], int numberOfTasks)
 {
-	if (numberOfTasks == 0)
+	if (numberOfTasks == 0)                                             //Checking if there is any task to update.
 	{
 		printf("There is no task to update.\n");
 		return;
@@ -171,7 +173,7 @@ void updateTask(PTASK arrayTask[], int numberOfTasks)
 	}
 	printf("\n");
 
-	if (taskExists(numberOfTasks, taskToUpdate) == false)
+	if (taskExists(numberOfTasks, taskToUpdate) == false)               //Checking if the task that the user wants to update exists.
 	{
 		return;
 	}
@@ -183,7 +185,7 @@ void updateTask(PTASK arrayTask[], int numberOfTasks)
 	scanf_s("%d", &input);
 	printf("\n");
 
-	switch (input)
+	switch (input)                                                      //Checking which option the user chose to know which function should be executed.
 	{
 	case 1:
 	{
@@ -201,9 +203,6 @@ void updateTask(PTASK arrayTask[], int numberOfTasks)
 		break;
 	}
 	}
-
-
-	
 }
 
 void updateStatus(PTASK tasks[], int taskToUpdate)
@@ -223,7 +222,7 @@ void updateStatus(PTASK tasks[], int taskToUpdate)
 	}
 	printf("\n");
 
-	if (status == 1)
+	if (status == 1)                                                    //Checking the option that the user chose to change the status depending on that.
 	{
 		setStatus(tasks[taskToUpdate - 1], "To Do");
 	}
@@ -260,7 +259,7 @@ void updateType(PTASK tasks[], int taskToUpdate)
 	}
 	printf("\n");
 
-	switch (type)
+	switch (type)                                                       //Checking the option that the user chose to change the type based on that.
 	{
 	case 1:
 		{
@@ -293,12 +292,12 @@ void updateType(PTASK tasks[], int taskToUpdate)
 
 void printTask(PTASK task)
 {
-	printf("\n%d.\nTask: %s\nType: %s\nStatus: %s\n", getTaskNumber(task) ,getTitle(task), getType(task), getStatus(task));
+	printf("\nTask #%d.\nTitle: %s\nType: %s\nStatus: %s\n", getTaskNumber(task) ,getTitle(task), getType(task), getStatus(task));
 }
 
 void printSingleTask(PTASK arrayTasks[], int numberOfTasks)
 {
-	if (numberOfTasks == 0)
+	if (numberOfTasks == 0)                                 //Checking if there is any task to print.
 	{
 		printf("There is no task to show.\n");
 		return;
@@ -317,17 +316,17 @@ void printSingleTask(PTASK arrayTasks[], int numberOfTasks)
 		return;
 	}
 
-	if (taskExists(numberOfTasks, task) == false)
+	if (taskExists(numberOfTasks, task) == false)          //Checking if the task that the user wants to print exists or not.
 	{
 		return;
 	}
 
-	printf("\nTask #%d.\nTask: %s\nType: %s\nStatus: %s\n", getTaskNumber(arrayTasks[task - 1]), getTitle(arrayTasks[task - 1]), getType(arrayTasks[task - 1]), getStatus(arrayTasks[task - 1]));
+	printf("\nTask #%d.\nTitle: %s\nType: %s\nStatus: %s\n", getTaskNumber(arrayTasks[task - 1]), getTitle(arrayTasks[task - 1]), getType(arrayTasks[task - 1]), getStatus(arrayTasks[task - 1]));
 }
 
 void printRangeTask(PTASK arrayTasks[], int numberOfTasks)
 {
-	if (numberOfTasks == 0)
+	if (numberOfTasks == 0)                                //Checking if there are any task to print.
 	{
 		printf("There is no task to show.\n");
 		return;
@@ -347,7 +346,7 @@ void printRangeTask(PTASK arrayTasks[], int numberOfTasks)
 		return;
 	}
 
-	if (option == 1)
+	if (option == 1)                                      //Checking which option did the user choose to print a group of tasks based on that.
 	{
 		printToDoTasks(arrayTasks, numberOfTasks);
 	}
@@ -385,78 +384,127 @@ void printRangeTask(PTASK arrayTasks[], int numberOfTasks)
 
 void printToDoTasks(PTASK arrayTasks[], int numberOfTasks)
 {
+	int k = 0;
 	for (int i = 0; i < numberOfTasks; i++)
 	{
 		if (strcmp(getStatus(arrayTasks[i]), "To Do") == 0)
 		{
 			printTask(arrayTasks[i]);
+			k++;
 		}
+	}
+
+	if (k == 0)
+	{
+		printf("There are no tasks of this status to print.\n\n");
 	}
 }
 
 void printDoingTasks(PTASK arrayTasks[], int numberOfTasks)
 {
+	int k = 0;
 	for (int i = 0; i < numberOfTasks; i++)
 	{
 		if (strcmp(getStatus(arrayTasks[i]), "Doing") == 0)
 		{
 			printTask(arrayTasks[i]);
+			k++;
 		}
+	}
+
+	if (k == 0)
+	{
+		printf("There are no tasks of this status to print.\n\n");
 	}
 }
 
 void printDoneTasks(PTASK arrayTasks[], int numberOfTasks)
 {
+	int k = 0;
 	for (int i = 0; i < numberOfTasks; i++)
 	{
 		if (strcmp(getStatus(arrayTasks[i]), "Done") == 0)
 		{
 			printTask(arrayTasks[i]);
+			k++;
 		}
+	}
+
+	if (k == 0)
+	{
+		printf("There are no tasks of this status to print.\n\n");
 	}
 }
 
 void printPersonalTasks(PTASK arrayTasks[], int numberOfTasks)
 {
+	int k = 0;
 	for (int i = 0; i < numberOfTasks; i++)
 	{
 		if (strcmp(getType(arrayTasks[i]), "Personal") == 0)
 		{
 			printTask(arrayTasks[i]);
+			k++;
 		}
+	}
+
+	if (k == 0)
+	{
+		printf("There are no tasks of this type to print.\n\n");
 	}
 }
 
 void printSchoolTasks(PTASK arrayTasks[], int numberOfTasks)
 {
+	int k = 0;
 	for (int i = 0; i < numberOfTasks; i++)
 	{
 		if (strcmp(getType(arrayTasks[i]), "School") == 0)
 		{
 			printTask(arrayTasks[i]);
+			k++;
 		}
+	}
+
+	if (k == 0)
+	{
+		printf("There are no tasks of this type to print.\n\n");
 	}
 }
 
 void printWorkTasks(PTASK arrayTasks[], int numberOfTasks)
 {
+	int k = 0;
 	for (int i = 0; i < numberOfTasks; i++)
 	{
 		if (strcmp(getType(arrayTasks[i]), "Work") == 0)
 		{
 			printTask(arrayTasks[i]);
+			k++;
 		}
+	}
+
+	if (k == 0)
+	{
+		printf("There are no tasks of this type to print.\n\n");
 	}
 }
 
 void printHomeTasks(PTASK arrayTasks[], int numberOfTasks)
 {
+	int k = 0;
 	for (int i = 0; i < numberOfTasks; i++)
 	{
 		if (strcmp(getType(arrayTasks[i]),"Home") == 0)
 		{
 			printTask(arrayTasks[i]);
+			k++;
 		}
+	}
+
+	if (k == 0)
+	{
+		printf("There are no tasks of this type to print.\n\n");
 	}
 }
 
@@ -468,7 +516,7 @@ void searchForTask(PTASK task[], int* numberTasks)
 	int taskNumber = 0;
 	char junkChars[JUNKCHARS];
 
-	if (*numberTasks == 0)
+	if (*numberTasks == 0)                                         //Checking if there is any task to search.
 	{
 		printf("There is no task to search.\n\n");
 		return;
@@ -488,13 +536,12 @@ void searchForTask(PTASK task[], int* numberTasks)
 		return;
 	}
 
-	if (taskNumber > *numberTasks)
+	if (taskExists(numberTasks, taskNumber) == false)			  //Checking if the task that the user wants to search exists or not.
 	{
-		printf("This task doesn't exist.\n\n");
 		return;
 	}
 
-	printTask(task[taskNumber - 1]);
+	printTask(task[taskNumber - 1]);                              //Showing the task that the user searched.
 
 	printf("\nWhat do you want to do with this task?\n");
 	printf("1) Delete task.\n");
@@ -512,6 +559,8 @@ void searchForTask(PTASK task[], int* numberTasks)
 	switch (input)
 	{
 	case 1:
+		//For the delete option the same code as the function "deleteTask" was used,
+		//The reason why we don't just call the function is because "deleteTask" ask for input and in this function input was already asked, so it would ask for input twice.
 		for (int i = taskNumber; i < *numberTasks; ++i)
 		{
 			setStatus(task[i - 1], getStatus(task[i]));
@@ -529,6 +578,8 @@ void searchForTask(PTASK task[], int* numberTasks)
 		break;
 	case 2:
 	{
+		//As well as the delete option, the update option basically uses the same code as the "updateTask" function.
+		//Also the reason why is the same.
 		printf("What do you want to update from the task?\n");
 		printf("1) Status.\n");
 		printf("2) Type.\n");
@@ -572,13 +623,13 @@ void searchForTask(PTASK task[], int* numberTasks)
 void printAllTasks(PTASK tasks[], int numberTasks)
 {
 	int i = 0;
-	if (numberTasks == 0)
+	if (numberTasks == 0)                                      //Checking if there are any tasks to print.
 	{
 		printf("There no tasks to print.\n\n");
 	}
 	else
 	{
-		while (i < numberTasks)
+		while (i < numberTasks)                                //Using a loop to print every task created one by one.
 		{
 			printTask(tasks[i]);
 			i++;
@@ -592,16 +643,15 @@ bool saveTasks(PTASK tasks[], int numberTasks)
 	FILE* fp;
 	int i = 0;
 
-	if ((fp = fopen("Tasks.txt", "w+")) == NULL)
+	if ((fp = fopen("Tasks.txt", "w+")) == NULL)                  //Opening the file and using "w+" in order to avoid deleting what was previously saved in the file.
 		return false;
 
-	fprintf(fp, "%d\n", numberTasks);
-	while (i < numberTasks)
+	fprintf(fp, "%d\n", numberTasks);                             //Saving the number of tasks in the file.
+	for (i = 0; i < numberTasks; i++)
 	{
-		fprintf(fp, "%d\n%s\n%s\n%s\n", getTaskNumber(tasks[i]), getTitle(tasks[i]), getType(tasks[i]), getStatus(tasks[i]));
-		i++;
+		fprintf(fp, "%d\n%s\n%s\n%s\n", getTaskNumber(tasks[i]), getTitle(tasks[i]), getType(tasks[i]), getStatus(tasks[i]));        //Printing every specification of each task created in the file.
 	}
-	fclose(fp);
+	fclose(fp);                                                   //Closing the file after it was all saved.
 
 	return true;
 }
@@ -611,28 +661,31 @@ bool loadTasks(PTASK tasks[], int* numberTasks)
 	FILE* fp;
 	int i = 0;
 
-	if ((fp = fopen("Tasks.txt", "r")) == NULL)
+	if ((fp = fopen("Tasks.txt", "r")) == NULL)                 //Opening the file to read what was saved in it.
 		return false;
 
 	int numberTasks_L = 0;
-	fscanf(fp, "%d\n", &numberTasks_L);
-	*numberTasks = numberTasks_L;
-	for (i = 0; i < numberTasks_L; i++)
+	fscanf(fp, "%d\n", &numberTasks_L);                        //Scanning first the number of tasks.
+	*numberTasks = numberTasks_L;                              //Loading the number of tasks.
+	for (i = 0; i < numberTasks_L; i++)                        //Loop used to load every task that was previously saved.
 	{
 		char titleBuffer[MAX_BUFFER];
 		char typeBuffer[MAX_BUFFER];
 		char statusBuffer[MAX_BUFFER];
 		int taskNumber;
 
-		fscanf(fp, "%d\n", &taskNumber);
-		fgets(titleBuffer, MAX_BUFFER, fp);
+		fscanf(fp, "%d\n", &taskNumber);                      //Scanning the number of task.
+		//Getting every specifiation of the task from the file.
+		fgets(titleBuffer, MAX_BUFFER, fp);                   
 		fgets(typeBuffer, MAX_BUFFER, fp);
 		fgets(statusBuffer, MAX_BUFFER, fp);
 
+		//Changing every '\n' to a '\0' in the strings.
 		RemoveBadChars(titleBuffer);
 		RemoveBadChars(typeBuffer);
 		RemoveBadChars(statusBuffer);
 
+		//Setting every specification to the respective task.
 		setTaskNumber(tasks[i], taskNumber);
 		setTitle(tasks[i], titleBuffer);
 		setType(tasks[i], typeBuffer);
