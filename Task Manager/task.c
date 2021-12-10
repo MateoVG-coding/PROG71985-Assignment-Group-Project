@@ -139,6 +139,66 @@ void deleteTask(PTASK arrayTask[], int* numberOfTasks)
 
 }
 
+void updateTask(PTASK arrayTask[], int numberOfTasks)
+{
+	if (numberOfTasks == 0)
+	{
+		printf("There is no task to delete.\n");
+		return;
+	}
+
+	int taskToUpdate = 0;
+
+	printf("Please enter the number of the task you want to update:\n");
+
+	if (scanf_s("%d", &taskToUpdate) != 1)
+	{
+		printf("You have entered an invalid value.\n");
+		return;
+	}
+
+	if (taskToUpdate > numberOfTasks)
+	{
+		printf("The task does not exist.\n");
+		return;
+	}
+
+
+	int status = 0;
+
+	printf("Please enter the new status for the task:\n");
+
+	printf("1) To Do\t 2) Doing\t 3) Done\n");
+
+	if (scanf_s("%d", &status) != 1)
+	{
+		printf("You have entered an invalid value.\n");
+		return;
+
+	}
+	else if (status > 3 || status < 0)
+	{
+		printf("You have entered an invalid value.\n");
+		return;
+	}
+
+	if (status == 1)
+	{
+		setStatus(arrayTask[taskToUpdate - 1], "To Do");
+	}
+	else if (status == 2)
+	{
+		setStatus(arrayTask[taskToUpdate - 1], "Doing");
+	}
+	else if (status == 3)
+	{
+		setStatus(arrayTask[taskToUpdate - 1], "Done");
+	}
+
+	printf("The task has been successfully updated.\n");
+
+}
+
 void printTask(PTASK task)
 {
 	printf("\n%d.\nTask: %s\nType: %s\nStatus: %s\n", getTaskNumber(task) ,getTitle(task), getType(task), getStatus(task));
@@ -155,19 +215,19 @@ void searchForTask(PTASK task[], int* numberTasks)
 	{
 		printf("You have entered an invalid value.\n");
 		scanf_s("%s", junkChars, JUNKCHARS);
-		return 1;
+		return;
 	}
 
 	if (taskNumber > NUMBEROFTASKS || taskNumber <= 0)
 	{
 		printf("Invalid number entered.\n\n");
-		return 1;
+		return;
 	}
 
 	if (taskNumber > *numberTasks)
 	{
 		printf("This task doesn't exist.\n\n");
-		return 1;
+		return;
 	}
 
 	printTask(task[taskNumber - 1]);
@@ -180,7 +240,7 @@ void searchForTask(PTASK task[], int* numberTasks)
 	{
 		printf("You have entered an invalid value.\n");
 		scanf_s("%s", junkChars, JUNKCHARS);
-		return 1;
+		return;
 	}
 
 	switch (input)

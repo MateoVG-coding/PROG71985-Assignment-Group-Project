@@ -30,6 +30,7 @@ void createArrayTasks(PTASK[]);
 
 void addNewTask(PTASK, int*);
 void deleteTask(PTASK[], int*);
+void updateTask(PTASK[], int);
 void printTask(PTASK);
 void searchForTask(PTASK[], int*);
 bool saveTasks(PTASK[], int);

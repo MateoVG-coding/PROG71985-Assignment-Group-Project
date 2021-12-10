@@ -50,6 +50,7 @@ int main(void)
 			}
 			case 3:
 			{
+				updateTask(arrayTasks, numberTasks);
 				break;
 			}
 			case 4:
