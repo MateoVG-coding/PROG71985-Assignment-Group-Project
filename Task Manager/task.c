@@ -144,6 +144,73 @@ void printTask(PTASK task)
 	printf("\n%d.\nTask: %s\nType: %s\nStatus: %s\n", getTaskNumber(task) ,getTitle(task), getType(task), getStatus(task));
 }
 
+
+void searchForTask(PTASK task[], int* numberTasks)
+{
+	int input = 0;
+	int taskNumber = 0;
+	char junkChars[JUNKCHARS];
+	printf("Please enter the number of the task: ");
+	if (scanf_s("%d", &taskNumber) != 1)
+	{
+		printf("You have entered an invalid value.\n");
+		scanf_s("%s", junkChars, JUNKCHARS);
+		return 1;
+	}
+
+	if (taskNumber > NUMBEROFTASKS || taskNumber <= 0)
+	{
+		printf("Invalid number entered.\n\n");
+		return 1;
+	}
+
+	if (taskNumber > *numberTasks)
+	{
+		printf("This task doesn't exist.\n\n");
+		return 1;
+	}
+
+	printTask(task[taskNumber - 1]);
+
+	printf("\nWhat do you want to do with this task?\n");
+	printf("1) Delete task.\n");
+	printf("2) Update task.\n");
+	printf("Enter which option you want: ");
+	if (scanf_s("%d", &input) != 1)
+	{
+		printf("You have entered an invalid value.\n");
+		scanf_s("%s", junkChars, JUNKCHARS);
+		return 1;
+	}
+
+	switch (input)
+	{
+	case 1:
+		for (int i = taskNumber; i < *numberTasks; ++i)
+		{
+			setStatus(task[i - 1], getStatus(task[i]));
+			setTitle(task[i - 1], getTitle(task[i]));
+			setType(task[i - 1], getType(task[i]));
+
+			setStatus(task[i], "");
+			setTitle(task[i], "");
+			setType(task[i], "");
+		}
+
+		*numberTasks -= 1;
+
+		printf("The task has been successfully deleted.\n");
+		break;
+	case 2:
+		break;
+	default:
+	{
+		printf("Invalid number.\n\n");
+		break;
+	}
+	}
+}
+
 void setTaskNumber(PTASK t, int taskNumber)
 {
 	t->taskNumber = taskNumber;

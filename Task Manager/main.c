@@ -70,6 +70,7 @@ int main(void)
 			}
 			case 7:
 			{
+				searchForTask(arrayTasks, &numberTasks);
 				break;
 			}
 			case 0:
