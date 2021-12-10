@@ -60,6 +60,7 @@ int main(void)
 			}
 			case 5:
 			{
+				printRangeTask(arrayTasks, numberTasks);
 				break;
 			}
 			case 6:

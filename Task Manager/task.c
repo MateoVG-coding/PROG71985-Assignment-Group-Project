@@ -41,11 +41,6 @@ void addNewTask(PTASK task, int* numberOfTasks)
 		return;
 
 	}
-	else if (type > 4 || type < 0)
-	{
-		printf("You have entered an invalid value.\n");
-		return;
-	}
 
 
 	if (type == 1)
@@ -64,6 +59,11 @@ void addNewTask(PTASK task, int* numberOfTasks)
 	{
 		setType(task, "Home");
 	}
+	else
+	{
+		printf("You have entered an invalid value.\n");
+		return;
+	}
 
 
 	printf("Please enter the status of the task:\n");
@@ -75,11 +75,6 @@ void addNewTask(PTASK task, int* numberOfTasks)
 		scanf_s("%s", junkChars, JUNKCHARS);
 		return;
 
-	}
-	else if (status > 3 || status < 0)
-	{
-		printf("You have entered an invalid value.\n");
-		return;
 	}
 
 
@@ -94,6 +89,11 @@ void addNewTask(PTASK task, int* numberOfTasks)
 	else if (status == 3)
 	{
 		setStatus(task, "Done");
+	}
+	else
+	{
+		printf("You have entered an invalid value.\n");
+		return;
 	}
 
 	*numberOfTasks += 1;
@@ -186,11 +186,6 @@ void updateTask(PTASK arrayTask[], int numberOfTasks)
 		return;
 
 	}
-	else if (status > 3 || status < 0)
-	{
-		printf("You have entered an invalid value.\n");
-		return;
-	}
 
 	if (status == 1)
 	{
@@ -203,6 +198,11 @@ void updateTask(PTASK arrayTask[], int numberOfTasks)
 	else if (status == 3)
 	{
 		setStatus(arrayTask[taskToUpdate - 1], "Done");
+	}
+	else
+	{
+		printf("You have entered an invalid value.\n");
+		return;
 	}
 
 	printf("The task has been successfully updated.\n");
@@ -218,7 +218,7 @@ void printSingleTask(PTASK arrayTasks[], int numberOfTasks)
 {
 	if (numberOfTasks == 0)
 	{
-		printf("There is no task to delete.\n");
+		printf("There is no task to show.\n");
 		return;
 	}
 
@@ -241,6 +241,141 @@ void printSingleTask(PTASK arrayTasks[], int numberOfTasks)
 	}
 
 	printf("\n%d.\nTask: %s\nType: %s\nStatus: %s\n", getTaskNumber(arrayTasks[task - 1]), getTitle(arrayTasks[task - 1]), getType(arrayTasks[task - 1]), getStatus(arrayTasks[task - 1]));
+}
+
+void printRangeTask(PTASK arrayTasks[], int numberOfTasks)
+{
+	if (numberOfTasks == 0)
+	{
+		printf("There is no task to show.\n");
+		return;
+	}
+
+	char junkChars[JUNKCHARS] = { '\0' };
+
+	int option = 0;
+
+	printf("Please enter the range of the task you want to see:\n");
+	printf("1) To Do\t 2) Doing\t 3) Done\t 4) Personal\t 5) School\t 6) Work\t 7) Home\n");
+
+	if (scanf_s("%d", &option) != 1)
+	{
+		printf("You have entered an invalid value.\n");
+		scanf_s("%s", junkChars, JUNKCHARS);
+		return;
+	}
+
+	if (option == 1)
+	{
+		printToDoTasks(arrayTasks, numberOfTasks);
+	}
+	else if (option == 2)
+	{
+		printDoingTasks(arrayTasks, numberOfTasks);
+	}
+	else if (option == 3)
+	{
+		printDoneTasks(arrayTasks, numberOfTasks);
+	}
+	else if (option == 4)
+	{
+		printPersonalTasks(arrayTasks, numberOfTasks);
+	}
+	else if (option == 5)
+	{
+		printSchoolTasks(arrayTasks, numberOfTasks);
+	}
+	else if (option == 6)
+	{
+		printWorkTasks(arrayTasks, numberOfTasks);
+	}
+	else if (option == 7)
+	{
+		printHomeTasks(arrayTasks, numberOfTasks);
+	}
+	else
+	{
+		printf("You have entered an invalid value.\n");
+		return;
+	}
+
+}
+
+void printToDoTasks(PTASK arrayTasks[], int numberOfTasks)
+{
+	for (int i = 0; i < numberOfTasks; i++)
+	{
+		if (strcmp(getStatus(arrayTasks[i]), "To Do") == 0)
+		{
+			printTask(arrayTasks[i]);
+		}
+	}
+}
+
+void printDoingTasks(PTASK arrayTasks[], int numberOfTasks)
+{
+	for (int i = 0; i < numberOfTasks; i++)
+	{
+		if (strcmp(getStatus(arrayTasks[i]), "Doing") == 0)
+		{
+			printTask(arrayTasks[i]);
+		}
+	}
+}
+
+void printDoneTasks(PTASK arrayTasks[], int numberOfTasks)
+{
+	for (int i = 0; i < numberOfTasks; i++)
+	{
+		if (strcmp(getStatus(arrayTasks[i]), "Done") == 0)
+		{
+			printTask(arrayTasks[i]);
+		}
+	}
+}
+
+void printPersonalTasks(PTASK arrayTasks[], int numberOfTasks)
+{
+	for (int i = 0; i < numberOfTasks; i++)
+	{
+		if (strcmp(getType(arrayTasks[i]), "Personal") == 0)
+		{
+			printTask(arrayTasks[i]);
+		}
+	}
+}
+
+void printSchoolTasks(PTASK arrayTasks[], int numberOfTasks)
+{
+	for (int i = 0; i < numberOfTasks; i++)
+	{
+		if (strcmp(getType(arrayTasks[i]), "School") == 0)
+		{
+			printTask(arrayTasks[i]);
+		}
+	}
+}
+
+void printWorkTasks(PTASK arrayTasks[], int numberOfTasks)
+{
+	for (int i = 0; i < numberOfTasks; i++)
+	{
+		if (strcmp(getType(arrayTasks[i]), "Work") == 0)
+		{
+			printTask(arrayTasks[i]);
+		}
+	}
+}
+
+void printHomeTasks(PTASK arrayTasks[], int numberOfTasks)
+{
+	for (int i = 0; i < numberOfTasks; i++)
+	{
+		if (strcmp(getType(arrayTasks[i]),"Home") == 0)
+		{
+			printTask(arrayTasks[i]);
+		}
+	}
 }
 
 

@@ -33,10 +33,17 @@ void deleteTask(PTASK[], int*);
 void updateTask(PTASK[], int);
 void printTask(PTASK);
 void printSingleTask(PTASK[], int);
+void printRangeTask(PTASK[], int);
+void printToDoTasks(PTASK[], int);
+void printDoingTasks(PTASK[], int);
+void printDoneTasks(PTASK[], int);
+void printPersonalTasks(PTASK[], int);
+void printSchoolTasks(PTASK[], int);
+void printWorkTasks(PTASK[], int);
+void printHomeTasks(PTASK[], int);
 void searchForTask(PTASK[], int*);
 bool saveTasks(PTASK[], int);
 bool loadTasks(PTASK[], int*);
-PTASK CreateTask(int, char[], char[], char[], int);
 bool RemoveBadChars(char*);
 bool taskExists(int, int);
 
