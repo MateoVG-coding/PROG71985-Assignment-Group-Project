@@ -19,7 +19,7 @@ void addNewTask(PTASK task, int* numberOfTasks)
 	int status = 0;
 	int type = 0;
 
-	printf("Please enter the task you want to add:\n");
+	printf("Please enter the task you want to add: ");
 
 	if (scanf_s("%s", title, LENGTHTITLE) != 1)
 	{
@@ -27,20 +27,21 @@ void addNewTask(PTASK task, int* numberOfTasks)
 		scanf_s("%s", junkChars, JUNKCHARS);
 		return;
 	}
+	printf("\n");
 
 	setTitle(task, title);
 
 
 	printf("Please enter the type of the task\n");
 	printf("1) Personal\t 2) School\t 3) Work\t 4) Home\n");
-
+	printf("Enter here: ");
 	if (scanf_s("%d", &type) != 1)
 	{
 		printf("You have entered an invalid value.\n");
 		scanf_s("%s", junkChars, JUNKCHARS);
 		return;
-
 	}
+	printf("\n");
 
 
 	if (type == 1)
@@ -61,7 +62,7 @@ void addNewTask(PTASK task, int* numberOfTasks)
 	}
 	else
 	{
-		printf("You have entered an invalid value.\n");
+		printf("You have entered an invalid value.\n\n");
 		return;
 	}
 
@@ -69,14 +70,14 @@ void addNewTask(PTASK task, int* numberOfTasks)
 	printf("Please enter the status of the task:\n");
 	printf("1) To Do\t 2) Doing\t 3) Done\n");
 
+	printf("Enter here: ");
 	if (scanf_s("%d", &status) != 1)
 	{
 		printf("You have entered an invalid value.\n");
 		scanf_s("%s", junkChars, JUNKCHARS);
 		return;
-
 	}
-
+	printf("\n");
 
 	if (status == 1)
 	{
@@ -98,7 +99,7 @@ void addNewTask(PTASK task, int* numberOfTasks)
 
 	*numberOfTasks += 1;
 
-	printf("The task has been successfully created.\n");
+	printf("The task has been successfully created.\n\n");
 }
 
 void deleteTask(PTASK arrayTask[], int* numberOfTasks)
@@ -113,7 +114,7 @@ void deleteTask(PTASK arrayTask[], int* numberOfTasks)
 
 	int NtaskToDelete;
 
-	printf("Please enter the number of the task you want to delete:\n");
+	printf("Please enter the number of the task you want to delete: ");
 
 	if (scanf_s("%d", &NtaskToDelete) != 1)
 	{
@@ -121,6 +122,7 @@ void deleteTask(PTASK arrayTask[], int* numberOfTasks)
 		scanf_s("%s", junkChars, JUNKCHARS);
 		return;
 	}
+	printf("\n");
 
 	if (taskExists(*numberOfTasks, NtaskToDelete) == false)
 	{
@@ -157,8 +159,9 @@ void updateTask(PTASK arrayTask[], int numberOfTasks)
 	char junkChars[JUNKCHARS] = { '\0' };
 
 	int taskToUpdate = 0;
+	int input = 0;
 
-	printf("Please enter the number of the task you want to update:\n");
+	printf("Please enter the number of the task you want to update: ");
 
 	if (scanf_s("%d", &taskToUpdate) != 1)
 	{
@@ -166,38 +169,71 @@ void updateTask(PTASK arrayTask[], int numberOfTasks)
 		scanf_s("%s", junkChars, JUNKCHARS);
 		return;
 	}
+	printf("\n");
 
 	if (taskExists(numberOfTasks, taskToUpdate) == false)
 	{
 		return;
 	}
 
+	printf("What do you want to update from the task?\n");
+	printf("1) Status.\n");
+	printf("2) Type.\n\n");
+	printf("Enter here: ");
+	scanf_s("%d", &input);
+	printf("\n");
 
+	switch (input)
+	{
+	case 1:
+	{
+		updateStatus(arrayTask, taskToUpdate);
+		break;
+	}
+	case 2:
+	{
+		updateType(arrayTask, taskToUpdate);
+		break;
+	}
+	default:
+	{
+		printf("Invalid value entered.\n\n");
+		break;
+	}
+	}
+
+
+	
+}
+
+void updateStatus(PTASK tasks[], int taskToUpdate)
+{
 	int status = 0;
-
+	char junkChars[JUNKCHARS];
 	printf("Please enter the new status for the task:\n");
 
-	printf("1) To Do\t 2) Doing\t 3) Done\n");
+	printf("1) To Do\n2) Doing\n3) Done\n");
 
+	printf("Enter here: ");
 	if (scanf_s("%d", &status) != 1)
 	{
 		printf("You have entered an invalid value.\n");
 		scanf_s("%s", junkChars, JUNKCHARS);
 		return;
-
 	}
+	printf("\n");
 
 	if (status == 1)
 	{
-		setStatus(arrayTask[taskToUpdate - 1], "To Do");
+		setStatus(tasks[taskToUpdate - 1], "To Do");
 	}
 	else if (status == 2)
 	{
-		setStatus(arrayTask[taskToUpdate - 1], "Doing");
+		setStatus(tasks[taskToUpdate - 1], "Doing");
 	}
 	else if (status == 3)
 	{
-		setStatus(arrayTask[taskToUpdate - 1], "Done");
+		setStatus(tasks[taskToUpdate - 1], "Done");
 	}
 	else
 	{
@@ -205,8 +241,54 @@ void updateTask(PTASK arrayTask[], int numberOfTasks)
 		return;
 	}
 
-	printf("The task has been successfully updated.\n");
+	printf("The task has been successfully updated.\n\n");
+}
 
+void updateType(PTASK tasks[], int taskToUpdate)
+{
+	int type = 0;
+	char junkChars[JUNKCHARS];
+	printf("Please enter the type of the task\n");
+	printf("1) Personal\n2) School\n3) Work\n4) Home\n");
+
+	printf("Enter here: ");
+	if (scanf_s("%d", &type) != 1)
+	{
+		printf("You have entered an invalid value.\n");
+		scanf_s("%s", junkChars, JUNKCHARS);
+		return;
+	}
+	printf("\n");
+
+	switch (type)
+	{
+	case 1:
+		{
+			setType(tasks[taskToUpdate - 1], "Personal");
+			break;
+		}
+	case 2: 
+		{
+			setType(tasks[taskToUpdate - 1], "School");
+			break;
+		}
+	case 3:
+		{
+			setType(tasks[taskToUpdate - 1], "Work");
+			break;
+		}
+	case 4:
+		{
+			setType(tasks[taskToUpdate - 1], "Home");
+			break;
+		}
+	default:
+	{
+		printf("Invalid value entered.\n\n");
+		break;
+	}
+	}
+	printf("The task has been succesfully updated.\n\n");
 }
 
 void printTask(PTASK task)
@@ -240,7 +322,7 @@ void printSingleTask(PTASK arrayTasks[], int numberOfTasks)
 		return;
 	}
 
-	printf("\n%d.\nTask: %s\nType: %s\nStatus: %s\n", getTaskNumber(arrayTasks[task - 1]), getTitle(arrayTasks[task - 1]), getType(arrayTasks[task - 1]), getStatus(arrayTasks[task - 1]));
+	printf("\nTask #%d.\nTask: %s\nType: %s\nStatus: %s\n", getTaskNumber(arrayTasks[task - 1]), getTitle(arrayTasks[task - 1]), getType(arrayTasks[task - 1]), getStatus(arrayTasks[task - 1]));
 }
 
 void printRangeTask(PTASK arrayTasks[], int numberOfTasks)
@@ -410,6 +492,7 @@ void searchForTask(PTASK task[], int* numberTasks)
 	printf("\nWhat do you want to do with this task?\n");
 	printf("1) Delete task.\n");
 	printf("2) Update task.\n");
+	printf("3) Exit.\n");
 	printf("Enter which option you want: ");
 	if (scanf_s("%d", &input) != 1)
 	{
@@ -417,6 +500,7 @@ void searchForTask(PTASK task[], int* numberTasks)
 		scanf_s("%s", junkChars, JUNKCHARS);
 		return;
 	}
+	printf("\n");
 
 	switch (input)
 	{
@@ -437,7 +521,39 @@ void searchForTask(PTASK task[], int* numberTasks)
 		printf("The task has been successfully deleted.\n");
 		break;
 	case 2:
+	{
+		printf("What do you want to update from the task?\n");
+		printf("1) Status.\n");
+		printf("2) Type.\n");
+		printf("Enter here the number of the option that you want to choose: ");
+		scanf_s("%d", &input);
+		printf("\n");
+
+		switch (input)
+		{
+		case 1:
+		{
+			updateStatus(task, taskNumber);
+			break;
+		}
+		case 2:
+		{
+			updateType(task, taskNumber);
+			break;
+		}
+		default:
+		{
+			printf("Invalid value entered.\n\n");
+			break;
+		}
+		}
+
 		break;
+	}
+	case 3:
+	{
+		break;
+	}
 	default:
 	{
 		printf("Invalid number.\n\n");

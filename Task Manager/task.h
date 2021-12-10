@@ -46,6 +46,9 @@ bool saveTasks(PTASK[], int);
 bool loadTasks(PTASK[], int*);
 bool RemoveBadChars(char*);
 bool taskExists(int, int);
+void updateStatus(PTASK[], int);
+void updateType(PTASK[], int);
+
 
 void setTaskNumber(PTASK, int);
 void setStatus(PTASK, char[]);

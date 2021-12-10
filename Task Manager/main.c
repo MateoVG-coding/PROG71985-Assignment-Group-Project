@@ -25,7 +25,7 @@ int main(void)
 
 		printMenu();
 
-		printf("Please enter the number of the option that you want to choose:\n");
+		printf("Please enter the number of the option that you want to choose: ");
 
 		if (scanf_s("%d", &menuInput) != 1)
 		{
@@ -33,6 +33,7 @@ int main(void)
 			scanf_s("%s", junkChars, JUNKCHARS);
 			exit(1);
 		}
+		printf("\n");
 
 		switch (menuInput)
 		{
