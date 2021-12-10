@@ -211,6 +211,85 @@ void searchForTask(PTASK task[], int* numberTasks)
 	}
 }
 
+bool saveTasks(PTASK tasks[], int numberTasks)
+{
+	FILE* fp;
+	int i = 0;
+
+	if ((fp = fopen("Tasks.txt", "w+")) == NULL)
+		return false;
+
+	fprintf(fp, "%d\n", numberTasks);
+	while (i < numberTasks)
+	{
+		fprintf(fp, "%d\n%s\n%s\n%s\n", getTaskNumber(tasks[i]), getTitle(tasks[i]), getType(tasks[i]), getStatus(tasks[i]));
+		i++;
+	}
+	fclose(fp);
+
+	return true;
+}
+
+bool loadTasks(PTASK tasks[], int* numberTasks)
+{
+	FILE* fp;
+	int i = 0;
+
+	if ((fp = fopen("Tasks.txt", "r")) == NULL)
+		return false;
+
+	int numberTasks_L = 0;
+	fscanf(fp, "%d\n", &numberTasks_L);
+	*numberTasks = numberTasks_L;
+	for (i = 0; i < numberTasks_L; i++)
+	{
+		char titleBuffer[80];
+		char typeBuffer[80];
+		char statusBuffer[80];
+		int taskNumber;
+
+		fscanf(fp, "%d\n", &taskNumber);
+		fgets(titleBuffer, 80, fp);
+		fgets(typeBuffer, 80, fp);
+		fgets(statusBuffer, 80, fp);
+
+		setTaskNumber(tasks[i], taskNumber);
+		setTitle(tasks[i], titleBuffer);
+		setType(tasks[i], typeBuffer);
+		setStatus(tasks[i], statusBuffer);
+	}
+}
+
+
+PTASK CreateTask(int taskNumber, char title[], char type[], char status[], int i)
+{
+	PTASK tasks[NUMBEROFTASKS];
+	createArrayTasks(tasks);
+
+	tasks[i]->taskNumber = taskNumber;
+	strncpy_s(tasks[i]->title, LENGTHTITLE, title, LENGTHTITLE);
+	strncpy_s(tasks[i]->type, LENGTHTYPE, type, LENGTHTYPE);
+	strncpy_s(tasks[i]->status, LENGTHSTATUS, status, LENGTHSTATUS);
+
+	RemoveBadChars(title);
+	RemoveBadChars(type);
+	RemoveBadChars(status);
+
+	return tasks;
+}
+
+bool RemoveBadChars(char* input)
+{
+	for (int i = 0; i < strlen(input); i++)
+	{
+		if (input[i] == '\n')
+			input[i] = '\0';
+	}
+
+	return true;
+}
+
+
 void setTaskNumber(PTASK t, int taskNumber)
 {
 	t->taskNumber = taskNumber;

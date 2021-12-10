@@ -31,6 +31,10 @@ void addNewTask(PTASK, int*);
 void deleteTask(PTASK[], int*);
 void printTask(PTASK);
 void searchForTask(PTASK[], int*);
+bool saveTasks(PTASK[], int);
+bool loadTasks(PTASK[], int*);
+PTASK CreateTask(int, char[], char[], char[], int);
+bool RemoveBadChars(char*);
 
 void setTaskNumber(PTASK, int);
 void setStatus(PTASK, char[]);

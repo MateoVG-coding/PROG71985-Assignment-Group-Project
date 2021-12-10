@@ -9,9 +9,12 @@ int main(void)
 
 	int numberTasks = 0;
 
+
 	PTASK arrayTasks[NUMBEROFTASKS];
 
 	createArrayTasks(arrayTasks);
+
+	loadTasks(arrayTasks, &numberTasks);
 
 	bool continueProgram = true;
 	while (continueProgram)
@@ -84,6 +87,7 @@ int main(void)
 				break;
 			}
 		}
+		saveTasks(arrayTasks, numberTasks);
 	}
 
 	return 0;
