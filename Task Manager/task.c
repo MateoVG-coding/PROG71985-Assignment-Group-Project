@@ -12,7 +12,7 @@ void createArrayTasks(PTASK tasks[])
 	}
 }
 
-void addNewTask(PTASK task, int numberOfTask)
+void addNewTask(PTASK task, int* numberOfTasks)
 {
 	char junkChars[JUNKCHARS] = { '\0' };
 	char title[LENGTHTITLE] = { '\0' };
@@ -27,6 +27,9 @@ void addNewTask(PTASK task, int numberOfTask)
 		scanf_s("%s", junkChars, JUNKCHARS);
 		return;
 	}
+
+	setTitle(task, title);
+
 
 	printf("Please enter the type of the task\n");
 	printf("1) Personal\t 2) School\t 3) Work\t 4) Home\n");
@@ -44,6 +47,25 @@ void addNewTask(PTASK task, int numberOfTask)
 		return;
 	}
 
+
+	if (type == 1)
+	{
+		setType(task, "Personal");
+	}
+	else if (type == 2)
+	{
+		setType(task, "School");
+	}
+	else if (type == 3)
+	{
+		setType(task, "Work");
+	}
+	else if (type == 4)
+	{
+		setType(task, "Home");
+	}
+
+
 	printf("Please enter the status of the task:\n");
 	printf("1) To Do\t 2) Doing\t 3) Done\n");
 
@@ -60,9 +82,63 @@ void addNewTask(PTASK task, int numberOfTask)
 		return;
 	}
 
-	setTitle(task, title);
-	setType(task, type);
-	setStatus(task, status);
+
+	if (status == 1)
+	{
+		setStatus(task, "To Do");
+	}
+	else if (status == 2)
+	{
+		setStatus(task, "Doing");
+	}
+	else if (status == 3)
+	{
+		setStatus(task, "Done");
+	}
+
+	*numberOfTasks += 1;
+
+	printf("The task has been successfully created.\n");
+
+	return;
+}
+
+void deleteTask(PTASK arrayTask[], int* numberOfTasks)
+{
+	if (*numberOfTasks == 0)
+	{
+		printf("There is no task to delete.\n");
+		return;
+	}
+
+	int NtaskToDelete;
+
+	printf("Please enter the number of the task you want to delete:\n");
+	scanf_s("%d", &NtaskToDelete);
+
+	if (NtaskToDelete > *numberOfTasks)
+	{
+		printf("The task does not exist.\n");
+		return;
+	}
+
+	for (int i = NtaskToDelete; i < *numberOfTasks; ++i)
+	{
+		setStatus(arrayTask[i - 1], getStatus(arrayTask[i]));
+		setTitle(arrayTask[i - 1], getTitle(arrayTask[i]));
+		setType(arrayTask[i - 1], getType(arrayTask[i]));
+
+		setStatus(arrayTask[i], "");
+		setTitle(arrayTask[i], "");
+		setType(arrayTask[i], "");
+	}
+
+	*numberOfTasks -= 1;
+
+	printf("The task has been successfully deleted.\n");
+
+	return;
+
 }
 
 void printTask(PTASK task)
@@ -70,26 +146,14 @@ void printTask(PTASK task)
 	printf("\n%d.\nTask: %s\nType: %s\nStatus: %s\n", getTaskNumber(task) ,getTitle(task), getType(task), getStatus(task));
 }
 
-
 void setTaskNumber(PTASK t, int taskNumber)
 {
 	t->taskNumber = taskNumber;
 }
 
-void setStatus(PTASK t, int status)
+void setStatus(PTASK t, char status[])
 {
-	if (status == 1)
-	{
-		strncpy_s(t->status, LENGTHSTATUS, "To Do", LENGTHSTATUS);
-	}
-	else if (status == 2)
-	{
-		strncpy_s(t->status, LENGTHSTATUS, "Doing", LENGTHSTATUS);
-	}
-	else
-	{
-		strncpy_s(t->status, LENGTHSTATUS, "Done", LENGTHSTATUS);
-	}
+	strncpy_s(t->status, LENGTHSTATUS, status, LENGTHSTATUS);
 }
 
 void setTitle(PTASK t, char title[])
@@ -97,24 +161,9 @@ void setTitle(PTASK t, char title[])
 	strncpy_s(t->title, LENGTHTITLE, title, LENGTHTITLE);
 }
 
-void setType(PTASK t, int type)
+void setType(PTASK t, char type[])
 {
-	if (type == 1)
-	{
-		strncpy_s(t->type, LENGTHTYPE, "Personal" , LENGTHTYPE);
-	}
-	else if (type == 2)
-	{
-		strncpy_s(t->type, LENGTHTYPE, "School", LENGTHTYPE);
-	}
-	else if (type == 3)
-	{
-		strncpy_s(t->type, LENGTHTYPE, "Work", LENGTHTYPE);
-	}
-	else
-	{
-		strncpy_s(t->type, LENGTHTYPE, "Home", LENGTHTYPE);
-	}
+	strncpy_s(t->type, LENGTHTYPE, type, LENGTHTYPE);
 }
 
 int getTaskNumber(PTASK t)

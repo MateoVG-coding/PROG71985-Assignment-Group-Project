@@ -35,12 +35,13 @@ int main(void)
 		{
 			case 1:
 			{
-				addNewTask(arrayTasks[numberTasks], numberTasks);
-				numberTasks += 1;
+				addNewTask(arrayTasks[numberTasks], &numberTasks);
+			
 				break;
 			}
 			case 2:
 			{
+				deleteTask(arrayTasks, &numberTasks);
 
 				break;
 			}

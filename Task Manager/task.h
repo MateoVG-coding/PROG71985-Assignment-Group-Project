@@ -10,9 +10,9 @@
 #include <stdbool.h>
 #include <string.h>
 
-#define LENGTHSTATUS 50
-#define LENGTHTITLE 100
-#define LENGTHTYPE 50
+#define LENGTHSTATUS 20
+#define LENGTHTITLE 50
+#define LENGTHTYPE 20
 #define NUMBEROFTASKS 100
 #define JUNKCHARS 256
 
@@ -27,12 +27,13 @@ typedef struct task
 
 void createArrayTasks(PTASK[]);
 
-void addNewTask(PTASK, int);
+void addNewTask(PTASK, int*);
+void deleteTask(PTASK[], int*);
 void printTask(PTASK);
 
 void setTaskNumber(PTASK, int);
-void setStatus(PTASK, int);
-void setType(PTASK, int);
+void setStatus(PTASK, char[]);
+void setType(PTASK, char[]);
 void setTitle(PTASK, char[]);
 int getTaskNumber(PTASK);
 char* getStatus(PTASK);
