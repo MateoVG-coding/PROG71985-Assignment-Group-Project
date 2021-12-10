@@ -243,15 +243,15 @@ bool loadTasks(PTASK tasks[], int* numberTasks)
 	*numberTasks = numberTasks_L;
 	for (i = 0; i < numberTasks_L; i++)
 	{
-		char titleBuffer[80];
-		char typeBuffer[80];
-		char statusBuffer[80];
+		char titleBuffer[MAX_BUFFER];
+		char typeBuffer[MAX_BUFFER];
+		char statusBuffer[MAX_BUFFER];
 		int taskNumber;
 
 		fscanf(fp, "%d\n", &taskNumber);
-		fgets(titleBuffer, 80, fp);
-		fgets(typeBuffer, 80, fp);
-		fgets(statusBuffer, 80, fp);
+		fgets(titleBuffer, MAX_BUFFER, fp);
+		fgets(typeBuffer, MAX_BUFFER, fp);
+		fgets(statusBuffer, MAX_BUFFER, fp);
 
 		setTaskNumber(tasks[i], taskNumber);
 		setTitle(tasks[i], titleBuffer);

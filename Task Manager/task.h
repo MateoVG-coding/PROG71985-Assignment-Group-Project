@@ -15,6 +15,7 @@
 #define LENGTHTYPE 20
 #define NUMBEROFTASKS 100
 #define JUNKCHARS 256
+#define MAX_BUFFER 80
 
 typedef struct task
 {
