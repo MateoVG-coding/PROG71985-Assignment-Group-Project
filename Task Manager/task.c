@@ -90,14 +90,17 @@ void addNewTask(PTASK task, int* numberOfTasks)
 		case 1:
 		{
 			setStatus(task, "To Do");
+			break;
 		}
 		case 2:
 		{
 			setStatus(task, "Doing");
+			break;
 		}
 		case 3:
 		{
 			setStatus(task, "Done");
+			break;
 		}
 		default:
 		{
@@ -350,13 +353,14 @@ void printRangeTask(PTASK arrayTasks[], int numberOfTasks)
 
 	printf("Please enter the range of the task you want to see:\n");
 	printf("1) To Do\t 2) Doing\t 3) Done\t 4) Personal\t 5) School\t 6) Work\t 7) Home\n");
-
+	printf("Enter here: ");
 	if (scanf_s("%d", &option) != 1)
 	{
 		printf("You have entered an invalid value.\n");
 		scanf_s("%s", junkChars, JUNKCHARS);
 		return;
 	}
+	printf("\n");
 
 	switch (option)         //Checking which option did the user choose to print a group of tasks based on that.
 	{
