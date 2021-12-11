@@ -239,14 +239,17 @@ void updateStatus(PTASK tasks[], int taskToUpdate)
 		case 1:
 		{
 			setStatus(tasks[taskToUpdate - 1], "To Do");
+			break;
 		}
 		case 2:
 		{
 			setStatus(tasks[taskToUpdate - 1], "Doing");
+			break;
 		}
 		case 3:
 		{
 			setStatus(tasks[taskToUpdate - 1], "Done");
+			break;
 		}
 		default:
 		{
@@ -330,6 +333,7 @@ void printSingleTask(PTASK arrayTasks[], int numberOfTasks)
 		scanf_s("%s", junkChars, JUNKCHARS);
 		return;
 	}
+	printf("\n");
 
 	if (taskExists(numberOfTasks, task) == false)          //Checking if the task that the user wants to print exists or not.
 	{
